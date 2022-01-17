@@ -11,12 +11,19 @@ document.querySelector('.button').addEventListener('click', () => {
     const urlGenderize = `${serverUrl1}?name=${name}`;
     const urlNationalize = `${serverUrl2}?name=${name}`;
 
-    
     name === '' ? result.innerHTML = 'enter name first' : 
-    request(urlGenderize).then(data => data.gender !== null ? 
-    result.innerHTML = data.name + ' is ' + data.gender : 
-    result.innerHTML = 'enter name on eng');
-    
-    request(urlNationalize)
-    .then(data => result.innerHTML += ' from ' + data.country[0].country_id);
+    Promise.all([
+        request(urlGenderize),
+        request(urlNationalize)
+    ])
+    .then(data => {
+        let person = data[0]; 
+        let countryData = data[1].country[0];
+        
+        if (data[0].gender !== null) {
+            result.innerHTML = person.name + ' is ' + person.gender + ' from ' + countryData.country_id
+        } else { 
+            result.innerHTML = 'enter name on eng'
+        }
+    })
 })
