@@ -12,7 +12,7 @@ document.querySelector('.button').addEventListener('click', () => {
     const urlNationalize = `${serverUrl2}?name=${name}`;
 
     
-    firstName === '' ? result.innerHTML = 'enter name first' : 
+    name === '' ? result.innerHTML = 'enter name first' : 
     request(urlGenderize).then(data => data.gender !== null ? 
     result.innerHTML = data.name + ' is ' + data.gender : 
     result.innerHTML = 'enter name on eng');
