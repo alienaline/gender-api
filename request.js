@@ -1,11 +1,16 @@
+const input = document.querySelector('.input');
+const button = document.querySelector('.button');
 const result = document.querySelector('.result');
 
-function request(url) {
-    return fetch(url).then(response => response.json());
+async function request(url) {
+    const response = await fetch(url);
+    return await response.json();
 }
 
-document.querySelector('.button').addEventListener('click', () => {
-    const name = document.querySelector('.input').value.trim();
+button.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    const name = input.value.trim();
     const serverUrl1 = 'https://api.genderize.io';
     const serverUrl2 = 'https://api.nationalize.io';
     const urlGenderize = `${serverUrl1}?name=${name}`;
