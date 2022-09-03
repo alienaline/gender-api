@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/gender-api/static/css/main.09881681.css",
+    "main.js": "/gender-api/static/js/main.eeb5cad3.js",
+    "index.html": "/gender-api/index.html",
+    "main.09881681.css.map": "/gender-api/static/css/main.09881681.css.map",
+    "main.eeb5cad3.js.map": "/gender-api/static/js/main.eeb5cad3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.09881681.css",
+    "static/js/main.eeb5cad3.js"
+  ]
+}
