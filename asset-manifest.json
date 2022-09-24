@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/gender-api/static/css/main.09881681.css",
-    "main.js": "/gender-api/static/js/main.eeb5cad3.js",
+    "main.css": "/gender-api/static/css/main.df21ea62.css",
+    "main.js": "/gender-api/static/js/main.3d7ca9db.js",
     "index.html": "/gender-api/index.html",
-    "main.09881681.css.map": "/gender-api/static/css/main.09881681.css.map",
-    "main.eeb5cad3.js.map": "/gender-api/static/js/main.eeb5cad3.js.map"
+    "main.df21ea62.css.map": "/gender-api/static/css/main.df21ea62.css.map",
+    "main.3d7ca9db.js.map": "/gender-api/static/js/main.3d7ca9db.js.map"
   },
   "entrypoints": [
-    "static/css/main.09881681.css",
-    "static/js/main.eeb5cad3.js"
+    "static/css/main.df21ea62.css",
+    "static/js/main.3d7ca9db.js"
   ]
 }
