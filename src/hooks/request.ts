@@ -1,24 +1,37 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { IDataGender, IDataCountry } from '../models';
 
-export default function useRequest() {
-    const [name, setName] = useState<string>('');
+export default function useRequest(ref: React.MutableRefObject<HTMLInputElement>) {
     const [dataGender, setDataGender] = useState<IDataGender>();
     const [dataCountry, setDataCountry] = useState<IDataCountry>();
-    const [result, setResult] = useState<string>('');
+    const [message, setMessage] = useState<string>('');
+
+    useEffect(() => {
+        if (dataGender && dataCountry) {
+            try {
+                if (dataGender.gender == null) {
+                    setMessage(`i can't recognise this name :(`);
+                } else {
+                    const text = `${dataGender.name} is ${dataGender.gender} from ${dataCountry.country[0].country_id}`;
+                    setMessage(text);
+                }
+            } catch (error) {
+                const text = `i can't recognize this name :(`;
+                setMessage(text);
+            }
+            
+        }
+    }, [dataGender, dataCountry])
 
     const request = async (url: string) => {
         const response = await fetch(url);
         return await response.json();
     };
 
-    const changeHandler = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        setName(event.currentTarget.value);
-        console.log(name);
-    }
-
     const submitHandler = (event: React.SyntheticEvent): void => {
         event.preventDefault();
+        const name = ref.current.value;
+
         if (name) {
             const urlGenderize = `https://api.genderize.io?name=${name}`;
             const urlNationalize = `https://api.nationalize.io?name=${name}`;
@@ -31,15 +44,11 @@ export default function useRequest() {
                 setDataGender(response[0]);
                 setDataCountry(response[1]);
             })
-            .then((): void => {
-                if (dataGender && dataCountry) {
-                    const res = `${dataGender.name} is ${dataGender.gender} from ${dataCountry.country[0].country_id}`;
-                    setResult(res);  
-                }
-            })
+        } else {
+            setMessage('please enter first name to see the result');
         }
     };
 
-    return { result, submitHandler, changeHandler };
+    return { message, submitHandler };
 
 }

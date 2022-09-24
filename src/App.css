@@ -2,6 +2,11 @@
     margin: auto;
 }
 
+form {
+    display: flex;
+    justify-content: center;
+}
+
 .input {
     width: 200px;
     margin: 0 10px;

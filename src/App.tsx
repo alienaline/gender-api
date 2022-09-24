@@ -1,22 +1,22 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import './App.css';
 import useRequest from './hooks/request';
 
 const App: React.FC = () => {
-
-  const { result, submitHandler, changeHandler } = useRequest();
+  const inputRef = useRef() as React.MutableRefObject<HTMLInputElement>;
+  const { message, submitHandler } = useRequest(inputRef);
 
   return (
     <div className="App">
       <form onSubmit={ submitHandler }>
         <input 
-          onChange={changeHandler}
+          ref={inputRef}
           className="input" 
           type="text" 
           placeholder="enter first name (eng only)"/>
         <button className="button">check</button>
       </form>
-      <p className='result'>{ result }</p>
+      <p className='result'>{ message }</p>
     </div>
   );
 }
